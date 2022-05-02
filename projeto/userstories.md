@@ -19,9 +19,9 @@
 <hr>
 
 ## **US04 (UC04 - Enviar moedas)**
-**Eu como** parceiro <br>
-**Desejo** me cadastrar no sistema <br>
-**Para que** eu posso acessá-lo e disponibilizar vantagens <br>
+**Eu como** professor <br>
+**Desejo** enviar moedas aos alunos <br>
+**Para que** eu posso reconhece-los pelo bom trabalho/comportamento <br>
 <hr>
 
 
