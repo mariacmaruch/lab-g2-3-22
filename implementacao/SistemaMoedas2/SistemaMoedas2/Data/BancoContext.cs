@@ -16,6 +16,7 @@ namespace SistemaMoedas2.Data
         public DbSet<Endereco> Enderecos { get; set; }
         public DbSet<Conta> Conta { get; set; }
         public DbSet<Instituicao> Instituicao { get; set; }
+        public DbSet<Parceiro> Parceiros { get; set; }
 
 
     }
