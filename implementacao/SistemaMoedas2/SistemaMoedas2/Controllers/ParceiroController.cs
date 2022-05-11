@@ -56,7 +56,7 @@ namespace SistemaMoedas2.Controllers
         /// <summary>
         /// Editar um aluno
         /// </summary>
-        /// <param name="aluno">Model de aluno</param>
+        /// <param name="parceiro">Model de aluno</param>
         /// <returns></returns>
         [HttpPost]
         public IActionResult Editar(Parceiro parceiro)
