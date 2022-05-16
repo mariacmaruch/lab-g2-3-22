@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using SistemaMoedas2.Data;
 using SistemaMoedas2.Models;
 using SistemaMoedas2.Repositorio.Interface;
@@ -8,12 +7,10 @@ namespace SistemaMoedas2.Controllers
 {
     public class ParceiroController : Controller
     {
-        private readonly BancoContext _context;
         private readonly IParceiroRepositorio _parceiro;
 
-        public ParceiroController(BancoContext context, IParceiroRepositorio aluno)
+        public ParceiroController(IParceiroRepositorio aluno)
         {
-            _context = context;
             _parceiro = aluno;
         }
 
@@ -22,12 +19,10 @@ namespace SistemaMoedas2.Controllers
             return View(_parceiro.BuscarTodos());
         }
 
-        /* IActionResult Criar()
+        public IActionResult Criar()
         {
-            var list = _context.Instituicao.ToList();
-            ViewBag.Instituicao = new SelectList(list, "Id", "Nome");
             return View();
-        }*/
+        }
 
         /// <summary>
         /// Id do aluno para editar

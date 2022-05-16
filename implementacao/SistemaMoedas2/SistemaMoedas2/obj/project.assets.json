@@ -2058,19 +2058,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\pedro\\.nuget\\packages\\": {}
+    "C:\\Users\\maria\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\pedro\\OneDrive\\Documentos\\PUC-Notebook-PV\\4º\\Laboratório de Desenvolvimento de Software\\lab 3\\lab-g2-3-22\\implementacao\\SistemaMoedas2\\SistemaMoedas2\\SistemaMoedas2.csproj",
+      "projectUniqueName": "C:\\Users\\maria\\OneDrive\\lab\\lab-g2-3-22\\implementacao\\SistemaMoedas2\\SistemaMoedas2\\SistemaMoedas2.csproj",
       "projectName": "SistemaMoedas2",
-      "projectPath": "C:\\Users\\pedro\\OneDrive\\Documentos\\PUC-Notebook-PV\\4º\\Laboratório de Desenvolvimento de Software\\lab 3\\lab-g2-3-22\\implementacao\\SistemaMoedas2\\SistemaMoedas2\\SistemaMoedas2.csproj",
-      "packagesPath": "C:\\Users\\pedro\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\pedro\\OneDrive\\Documentos\\PUC-Notebook-PV\\4º\\Laboratório de Desenvolvimento de Software\\lab 3\\lab-g2-3-22\\implementacao\\SistemaMoedas2\\SistemaMoedas2\\obj\\",
+      "projectPath": "C:\\Users\\maria\\OneDrive\\lab\\lab-g2-3-22\\implementacao\\SistemaMoedas2\\SistemaMoedas2\\SistemaMoedas2.csproj",
+      "packagesPath": "C:\\Users\\maria\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\maria\\OneDrive\\lab\\lab-g2-3-22\\implementacao\\SistemaMoedas2\\SistemaMoedas2\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\pedro\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\maria\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
