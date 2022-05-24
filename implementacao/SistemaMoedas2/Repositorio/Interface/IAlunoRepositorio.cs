@@ -4,10 +4,12 @@ namespace SistemaMoedas2.Repositorio.Interface
 {
     public interface IAlunoRepositorio
     {
-        List<Aluno> BuscarTodos();
-        Aluno Adicionar(Aluno aluno);
-        Aluno ObterPorId(int? id);
-        Aluno Atualizar(Aluno aluno);
-        bool Deletar(int? id);
+        Task<IEnumerable<Aluno>> GetAlunos();
+        Task<Aluno> GetAluno(int id);
+        Task<Aluno> GetAlunoByEmailAndSenha(string email, string senha);
+        Task<int> GetAlunoIdByCpf(string cpf);
+        Task CreateAluno(Aluno aluno);
+        Task UpdateAluno(Aluno aluno);
+        Task DeleteAluno(Aluno aluno);
     }
 }

@@ -38,10 +38,6 @@ namespace SistemaMoedas2.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Endereco")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<int>("InstituicaoId")
                         .HasColumnType("int");
 
@@ -91,6 +87,9 @@ namespace SistemaMoedas2.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
+                    b.Property<int>("AlunoId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Bairro")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -115,6 +114,9 @@ namespace SistemaMoedas2.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("AlunoId")
+                        .IsUnique();
 
                     b.ToTable("Enderecos");
                 });
@@ -205,13 +207,20 @@ namespace SistemaMoedas2.Migrations
 
             modelBuilder.Entity("SistemaMoedas2.Models.Aluno", b =>
                 {
-                    b.HasOne("SistemaMoedas2.Models.Instituicao", "Instituicao")
+                    b.HasOne("SistemaMoedas2.Models.Instituicao", null)
                         .WithMany()
                         .HasForeignKey("InstituicaoId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
 
-                    b.Navigation("Instituicao");
+            modelBuilder.Entity("SistemaMoedas2.Models.Endereco", b =>
+                {
+                    b.HasOne("SistemaMoedas2.Models.Aluno", null)
+                        .WithOne()
+                        .HasForeignKey("SistemaMoedas2.Models.Endereco", "AlunoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("SistemaMoedas2.Models.Professor", b =>

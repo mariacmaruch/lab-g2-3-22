@@ -4,10 +4,12 @@ namespace SistemaMoedas2.Repositorio.Interface
 {
     public interface IParceiroRepositorio
     {
-        List<Parceiro> BuscarTodos();
-        Parceiro Adicionar(Parceiro aluno);
-        Parceiro ObterPorId(int? id);
-        Parceiro Atualizar(Parceiro aluno);
-        bool Deletar(int? id);
+        Task<IEnumerable<Parceiro>> GetParceiros();
+        Task<Parceiro> GetParceiro(int id);
+        Task<Parceiro> GetParceiroByEmailAndSenha(string email, string senha);
+        Task<int> GetParceiroIdByCnpj(string cnpj);
+        Task CreateParceiro(Parceiro parceiro);
+        Task UpdateParceiro(Parceiro parceiro);
+        Task DeleteParceiro(Parceiro parceiro);
     }
 }

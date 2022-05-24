@@ -18,6 +18,24 @@ namespace SistemaMoedas2.Data
         public DbSet<Instituicao> Instituicao { get; set; }
         public DbSet<Parceiro> Parceiros { get; set; }
 
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Endereco>()
+                .HasOne<Aluno>()
+                .WithOne()
+                .HasForeignKey<Endereco>(p => p.AlunoId);
+
+            modelBuilder.Entity<Instituicao>()
+                .HasMany<Aluno>()
+                .WithOne()
+                .HasForeignKey(p => p.InstituicaoId);
+
+            modelBuilder.Entity<Conta>()
+                .HasOne<Aluno>()
+                .WithOne()
+                .HasForeignKey<Conta>(c => c.AlunoId);
+        }
+
 
     }
 }

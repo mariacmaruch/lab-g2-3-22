@@ -3,83 +3,155 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using SistemaMoedas2.Data;
 using SistemaMoedas2.Models;
 using SistemaMoedas2.Repositorio.Interface;
+using System.Text.Json;
 
 namespace SistemaMoedas2.Controllers
 {
-    public class AlunoController : Controller
+    [Route("api/[controller]")]
+    [ApiController]
+    public class AlunoController : ControllerBase
     {
-        private readonly BancoContext _context;
         private readonly IAlunoRepositorio _aluno;
+        private readonly IEnderecoRepositorio _endereco;
 
-        public AlunoController(BancoContext context, IAlunoRepositorio aluno)
+        public AlunoController(IAlunoRepositorio aluno, IEnderecoRepositorio endereco)
         {
-            _context = context;
             _aluno = aluno;
+            _endereco = endereco;
         }
 
-        public IActionResult Index()
+        [HttpGet]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        public async Task<ActionResult<IAsyncEnumerable<Aluno>>> GetAlunos()
         {
-            return View(_aluno.BuscarTodos());
+            try
+            {
+                var alunos = await _aluno.GetAlunos();
+                return Ok(alunos);
+            }
+            catch (Exception)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError);
+                
+            }
         }
 
-        public IActionResult Criar()
+        [HttpGet("login")]
+        public async Task<ActionResult<Aluno>> GetAlunosByEmailAndSenha([FromQuery] string email, [FromQuery] string senha)
         {
-            var list = _context.Instituicao.ToList();
-            ViewBag.Instituicao = new SelectList(list, "Id", "Nome");
-            return View();
-        }
+            try
+            {
+                var aluno = await _aluno.GetAlunoByEmailAndSenha(email, senha);
 
-        /// <summary>
-        /// Id do aluno para editar
-        /// </summary>
-        /// <param name="id">id aluno</param>
-        /// <returns></returns>
-        public IActionResult Editar(int id)
+                if (aluno == null)
+                    return NotFound($"Usário ou senha inválidos");
+
+                return Ok(aluno);
+            }
+            catch
+            {
+                return BadRequest("Requisição inválida");
+
+            }
+
+        }
+        [HttpGet("{id:int}",Name="GetAluno")]
+        public async Task<ActionResult<Aluno>> GetAluno(int id)
         {
-            var list = _context.Instituicao.ToList();
-            ViewBag.Instituicao = new SelectList(list, "Id", "Nome");
-            var aluno = _aluno.ObterPorId(id);
-            return View(aluno);
+            try
+            {
+                var aluno = await _aluno.GetAluno(id);
+
+                if (aluno == null)
+                    return NotFound($"Não existe aluno com o id = {id}");
+
+                return Ok(aluno);
+            }
+            catch
+            {
+                return BadRequest("Requisição inválida");
+            }
         }
 
-        // POST: Aluno/Create
-        /// <summary>
-        /// Cadastrar um aluno
-        /// </summary>
-        /// <param name="aluno">Model de aluno</param>
-        /// <returns></returns>
         [HttpPost]
-        public IActionResult Criar(Aluno aluno)
+        public async Task<ActionResult> Create(CadastroAluno aluno)
         {
-            var list = _context.Instituicao.ToList();
-            ViewBag.Instituicao = new SelectList(list, "Id", "Nome");
-            _aluno.Adicionar(aluno);
-            return RedirectToAction("Index");
+            Aluno novoAluno = new Aluno()
+            {
+                Cpf = aluno.Cpf,
+                Senha = aluno.Senha,
+                Nome = aluno.Nome,
+                Email = aluno.Email,
+                Rg = aluno.Rg,
+                InstituicaoId = aluno.InstituicaoId
+            };
+
+            Endereco novoEndereco = new Endereco()
+            {
+                Rua = aluno.Rua,
+                Numero = aluno.Numero,
+                Complemento = aluno.Complemento,
+                Bairro = aluno.Bairro,
+                Cidade = aluno.Cidade,
+                Estado = aluno.Estado
+            };
+            try
+            {
+                await _aluno.CreateAluno(novoAluno);
+                novoEndereco.AlunoId = await _aluno.GetAlunoIdByCpf(novoAluno.Cpf);
+                await _endereco.CreateEndereco(novoEndereco);
+                return CreatedAtRoute(nameof(GetAluno), new {id = novoAluno.Id }, novoAluno);
+
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex);
+            }
         }
 
-        /// <summary>
-        /// Editar um aluno
-        /// </summary>
-        /// <param name="aluno">Model de aluno</param>
-        /// <returns></returns>
-        [HttpPost]
-        public IActionResult Editar(Aluno aluno)
+        [HttpPut("{id:int}")]
+        public async Task<ActionResult> Edit(int id, [FromBody]Aluno aluno)
         {
-            var list = _context.Instituicao.ToList();
-            ViewBag.Instituicao = new SelectList(list, "Id", "Nome");
-            _aluno.Atualizar(aluno);
-            return RedirectToAction("Index");
-        }
+            try
+            {
+                if(aluno.Id == id)
+                {
+                    await _aluno.UpdateAluno(aluno);
+                    return Ok($"Aluno com id = {id} foi atualizado com sucesso");
+                }
+                else
+                {
+                    return BadRequest("Dados inconsistentes");
+                }
 
-        /// <summary>
-        /// Deletar um aluno
-        /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
-        public IActionResult Apagar(int id)
+            }
+            catch
+            {
+                return BadRequest("Requisição inválida");
+            }
+        }
+        [HttpDelete("{id:int}")]
+        public async Task<ActionResult> Delete(int id)
         {
-             _aluno.Deletar(id);
-            return RedirectToAction("Index");
+            try
+            {
+                var aluno = await _aluno.GetAluno(id);
+                if(aluno != null)
+                {
+                    await _aluno.DeleteAluno(aluno);
+                    return Ok($"Aluno de id = {id} foi excluido com sucesso");
+                }
+                else
+                {
+                    return BadRequest($"Aluno de id = {id} não encontrado");
+                }
+
+            }
+            catch
+            {
+                return BadRequest("Requisição inválida");
+            }
         }
     }
 }

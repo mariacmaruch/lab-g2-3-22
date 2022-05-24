@@ -5,18 +5,52 @@ using SistemaMoedas2.Repositorio.Interface;
 
 namespace SistemaMoedas2.Controllers
 {
-    public class ParceiroController : Controller
+    [Route("api/[controller]")]
+    [ApiController]
+    public class ParceiroController : ControllerBase
     {
         private readonly IParceiroRepositorio _parceiro;
 
-        public ParceiroController(IParceiroRepositorio aluno)
+        public ParceiroController(IParceiroRepositorio parceiro)
         {
-            _parceiro = aluno;
+            _parceiro = parceiro;
         }
 
-        public IActionResult Index()
+        [HttpGet]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        public async Task<ActionResult<IAsyncEnumerable<Parceiro>>> GetInstituicoes()
         {
-            return View(_parceiro.BuscarTodos());
+            try
+            {
+                var parceiros = await _parceiro.GetParceiros();
+                return Ok(parceiros);
+            }
+            catch (Exception)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError);
+
+            }
+        }
+
+        [HttpGet("login")]
+        public async Task<ActionResult<Parceiro>> GetParceiroByEmailAndSenha([FromQuery] string email, [FromQuery] string senha)
+        {
+            try
+            {
+                var parceiro = await _parceiro.GetParceiroByEmailAndSenha(email, senha);
+
+                if (parceiro == null)
+                    return NotFound($"Usário ou senha inválidos");
+
+                return Ok(parceiro);
+            }
+            catch
+            {
+                return BadRequest("Requisição inválida");
+
+            }
+
         }
 
         public IActionResult Criar()

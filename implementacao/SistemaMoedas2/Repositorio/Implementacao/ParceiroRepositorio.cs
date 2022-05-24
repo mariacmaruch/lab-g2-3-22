@@ -1,4 +1,5 @@
-﻿using SistemaMoedas2.Data;
+﻿using Microsoft.EntityFrameworkCore;
+using SistemaMoedas2.Data;
 using SistemaMoedas2.Models;
 using SistemaMoedas2.Repositorio.Interface;
 
@@ -13,53 +14,62 @@ namespace SistemaMoedas2.Repositorio.Implementacao
             _banco = banco;
         }
 
-        public Parceiro Adicionar(Parceiro parceiro)
+        public async Task CreateParceiro(Parceiro parceiro)
         {
             _banco.Parceiros.Add(parceiro);
             _banco.SaveChanges();
+        }
+        public async Task UpdateParceiro(Parceiro parceiro)
+        {
+            _banco.Entry(parceiro).State = EntityState.Modified;
+            await _banco.SaveChangesAsync();
+        }
+
+        public async Task DeleteParceiro(Parceiro parceiro)
+        {
+            _banco.Parceiros.Remove(parceiro);
+            await _banco.SaveChangesAsync();
+        }
+        public async Task<Parceiro> GetParceiro(int id)
+        {
+            var parceiro = await _banco.Parceiros.FindAsync(id);
             return parceiro;
         }
 
-        public Parceiro Atualizar(Parceiro parceiro)
+        public async Task<IEnumerable<Parceiro>> GetParceiros()
         {
-            Parceiro parceiroDb = ObterPorId(parceiro.Id);
-            if(parceiroDb == null)
+            try
             {
-                throw new System.Exception("Parceiro não encontrado.");         
+                return await _banco.Parceiros.ToListAsync();
+            }
+            catch (Exception)
+            {
+
+                throw;
             }
 
-            parceiroDb.Nome = parceiro.Nome;
-            parceiroDb.Email = parceiro.Email;
-            parceiroDb.Senha = parceiro.Senha;
-            parceiroDb.Cnpj = parceiro.Cnpj;
-
-            _banco.Parceiros.Update(parceiroDb);
-            _banco.SaveChanges();
-
-            return parceiroDb; 
         }
 
-        public List<Parceiro> BuscarTodos()
+        public async Task<Parceiro> GetParceiroByEmailAndSenha(string email, string senha)
         {
-            return _banco.Parceiros.ToList();
-        }
-
-        public bool Deletar(int? id)
-        {
-            Parceiro parceiroDb = ObterPorId(id);
-            if (parceiroDb == null)
+            Parceiro parceiro = null;
+            if (!string.IsNullOrWhiteSpace(email) && !string.IsNullOrWhiteSpace(senha))
             {
-                throw new System.Exception("Aluno não encontrado.");
+                parceiro = await _banco.Parceiros.Where(n => n.Email == email && n.Senha == senha).FirstAsync();
             }
-
-            _banco.Parceiros.Remove(parceiroDb);
-            _banco.SaveChanges();
-            return true;
+            return parceiro;
         }
 
-        public Parceiro ObterPorId(int? id)
+        public async Task<int> GetParceiroIdByCnpj(string cnpj)
         {
-            return _banco.Parceiros.FirstOrDefault(x => x.Id == id);
+            Parceiro parceiro = null;
+            if (!string.IsNullOrWhiteSpace(cnpj))
+            {
+                parceiro = await _banco.Parceiros.Where(n => n.Cnpj == cnpj).FirstAsync();
+            }
+            return parceiro.Id;
         }
+
+
     }
 }
