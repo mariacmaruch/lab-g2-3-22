@@ -4,21 +4,24 @@
 }
 
 <div class="text-justify">
-    <h3 class="display-4">Vantagem</h3>
+    <h2>Vantagem</h2>
 </div>
 
-@if (Model != null && Model.Any())
-{
-    foreach (Vantagem item in Model)
+<div class="card-group">
+
+    @if (Model != null && Model.Any())
     {
-        <div class="card" style="width: 18rem;">
-@*            <img class="card-img-top" src="..." alt="Card image cap">
-*@            <div class="card-body">
-                <h5 class="card-title">@item.Nome</h5>
-                <p class="card-text">@item.Descricao</p>
-                 <p class="card-text">@item.Custo</p>
-                <a href="#" class="btn btn-primary">Comprar</a>
+        foreach (Vantagem item in Model)
+        {
+            <div class="card">
+                <img class="card-img-top" src="~/Images/@item.ContentType" asp-append-version="true">
+                <div class="card-body">
+                    <h5 class="card-title">@item.Nome</h5>
+                    <p class="card-text">@item.Descricao</p>
+                    <p class="card-text">R$@item.Custo</p>
+                    <a href="#" class="btn btn-primary">Comprar</a>
+                </div>
             </div>
-        </div>
+        }
     }
-}
+</div>
