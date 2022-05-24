@@ -18,6 +18,8 @@ namespace SistemaMoedas2.Data
         public DbSet<Instituicao> Instituicao { get; set; }
         public DbSet<Parceiro> Parceiros { get; set; }
         public DbSet<Professor> Professor { get; set; }
+        public DbSet<Vantagem> Vantagens { get; set; }
+
 
     }
 }

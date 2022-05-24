@@ -28,6 +28,8 @@ namespace SistemaMoedas2
             services.AddScoped<IAlunoRepositorio, AlunoRepositorio>();
             services.AddScoped<IParceiroRepositorio, ParceiroRepositorio>();
             services.AddScoped<IProfessorRepositorio, ProfessorRepositorio>();
+            services.AddScoped<IVantagemRepositorio, VantagemRepositorio>();
+
         }
 
         public void Configure(WebApplication app, IWebHostEnvironment environment)
