@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using SistemaMoedas2.Data;
 using SistemaMoedas2.Models;
 using SistemaMoedas2.Repositorio.Interface;
 
@@ -69,6 +68,38 @@ namespace SistemaMoedas2.Controllers
         {
             _parceiro.Deletar(id);
             return RedirectToAction("Index");
+        }
+
+        public IActionResult Login()
+        {
+            return View();
+        }
+
+        public IActionResult HomeParceiro(Parceiro login)
+        {
+            ViewBag.nomeId = login;
+            return View(login);
+        }
+
+        /// <summary>
+        /// Entrar parceiro
+        /// </summary>
+        /// <param name="email">Email do parceiro</param>
+        /// <param name="senha">Senha do parceiro</param>
+        /// <returns></returns>
+        [HttpPost]
+        public IActionResult Login(Parceiro parceiro)
+        {
+            var encontrou = _parceiro.ObterParceiroPorEmailSenha(parceiro.Email, parceiro.Senha);
+
+            if (encontrou == null)
+            {
+                TempData["Erro"] = $"Email e/ou senha inválidos. Tente novamente.";
+                return RedirectToAction("Login");
+            }
+
+            var nomeId = _parceiro.ObterPorId(encontrou.Id);
+            return RedirectToAction("HomeParceiro", new RouteValueDictionary(nomeId));
         }
     }
 }

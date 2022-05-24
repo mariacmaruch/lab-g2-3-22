@@ -81,5 +81,38 @@ namespace SistemaMoedas2.Controllers
              _aluno.Deletar(id);
             return RedirectToAction("Index");
         }
+
+        public IActionResult Login()
+        {
+            return View();
+        }
+
+        public IActionResult HomeAluno(Aluno login)
+        {
+            ViewBag.nomeId = login;
+            return View(login);
+        }
+
+        /// <summary>
+        /// Entrar aluno
+        /// </summary>
+        /// <param name="email">Email do aluno</param>
+        /// <param name="senha">Senha do aluno</param>
+        /// <returns></returns>
+        [HttpPost]
+        public IActionResult Login(Aluno aluno)
+        {
+            var encontrou = _aluno.ObterAlunoPorEmailSenha(aluno.Email, aluno.Senha); 
+
+            if (encontrou == null)
+            {
+                TempData["Erro"] = $"Email e/ou senha inválidos. Tente novamente.";
+                return RedirectToAction("Login");
+            }
+
+            var nomeId = _aluno.ObterPorId(encontrou.Id);
+            return RedirectToAction("HomeAluno", new RouteValueDictionary(nomeId));
+        }
     }
 }
+

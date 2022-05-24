@@ -61,5 +61,17 @@ namespace SistemaMoedas2.Repositorio.Implementacao
         {
             return _banco.Parceiros.FirstOrDefault(x => x.Id == id);
         }
+
+        public Parceiro ObterParceiroPorEmailSenha(string email, string senha)
+        {
+            Parceiro encontrou = _banco.Parceiros.FirstOrDefault(x => x.Email == email && x.Senha == senha);
+
+            if (encontrou == null)
+            {
+                return null;
+            }
+
+            return encontrou;
+        }
     }
 }

@@ -27,6 +27,7 @@ namespace SistemaMoedas2
             services.AddEntityFrameworkSqlServer().AddDbContext<BancoContext>(o => o.UseSqlServer(Configuration.GetConnectionString("DataBase")));
             services.AddScoped<IAlunoRepositorio, AlunoRepositorio>();
             services.AddScoped<IParceiroRepositorio, ParceiroRepositorio>();
+            services.AddScoped<IProfessorRepositorio, ProfessorRepositorio>();
         }
 
         public void Configure(WebApplication app, IWebHostEnvironment environment)

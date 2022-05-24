@@ -17,7 +17,7 @@ namespace SistemaMoedas2.Data
         public DbSet<Conta> Conta { get; set; }
         public DbSet<Instituicao> Instituicao { get; set; }
         public DbSet<Parceiro> Parceiros { get; set; }
-
+        public DbSet<Professor> Professor { get; set; }
 
     }
 }

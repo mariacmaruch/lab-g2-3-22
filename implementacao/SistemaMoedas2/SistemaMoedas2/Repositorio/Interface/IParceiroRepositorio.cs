@@ -9,5 +9,6 @@ namespace SistemaMoedas2.Repositorio.Interface
         Parceiro ObterPorId(int? id);
         Parceiro Atualizar(Parceiro aluno);
         bool Deletar(int? id);
+        Parceiro ObterParceiroPorEmailSenha(string email, string senha);
     }
 }

@@ -60,6 +60,18 @@ namespace SistemaMoedas2.Repositorio.Implementacao
             return true;
         }
 
+        public Aluno ObterAlunoPorEmailSenha(string email, string senha)
+        {
+            Aluno encontrou = _banco.Alunos.FirstOrDefault(x => x.Email == email && x.Senha == senha);
+
+            if (encontrou == null)
+            {
+                return null;
+            }
+
+            return encontrou;
+        }
+
         public Aluno ObterPorId(int? id)
         {
             return _banco.Alunos.FirstOrDefault(x => x.Id == id);

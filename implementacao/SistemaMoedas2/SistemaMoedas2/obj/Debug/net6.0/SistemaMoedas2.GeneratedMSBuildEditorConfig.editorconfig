@@ -23,8 +23,16 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWx1bm9cRWRpdGFyLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/maria/OneDrive/lab/lab-g2-3-22/implementacao/SistemaMoedas2/SistemaMoedas2/Views/Aluno/HomeAluno.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWx1bm9cSG9tZUFsdW5vLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/maria/OneDrive/lab/lab-g2-3-22/implementacao/SistemaMoedas2/SistemaMoedas2/Views/Aluno/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWx1bm9cSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/maria/OneDrive/lab/lab-g2-3-22/implementacao/SistemaMoedas2/SistemaMoedas2/Views/Aluno/Login.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWx1bm9cTG9naW4uY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/maria/OneDrive/lab/lab-g2-3-22/implementacao/SistemaMoedas2/SistemaMoedas2/Views/Home/Index.cshtml]
@@ -43,8 +51,24 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGFyY2Vpcm9cRWRpdGFyLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/maria/OneDrive/lab/lab-g2-3-22/implementacao/SistemaMoedas2/SistemaMoedas2/Views/Parceiro/HomeParceiro.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGFyY2Vpcm9cSG9tZVBhcmNlaXJvLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/maria/OneDrive/lab/lab-g2-3-22/implementacao/SistemaMoedas2/SistemaMoedas2/Views/Parceiro/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGFyY2Vpcm9cSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/maria/OneDrive/lab/lab-g2-3-22/implementacao/SistemaMoedas2/SistemaMoedas2/Views/Parceiro/Login.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGFyY2Vpcm9cTG9naW4uY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/maria/OneDrive/lab/lab-g2-3-22/implementacao/SistemaMoedas2/SistemaMoedas2/Views/Professor/HomeProfessor.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvZmVzc29yXEhvbWVQcm9mZXNzb3IuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/maria/OneDrive/lab/lab-g2-3-22/implementacao/SistemaMoedas2/SistemaMoedas2/Views/Professor/Login.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvZmVzc29yXExvZ2luLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/maria/OneDrive/lab/lab-g2-3-22/implementacao/SistemaMoedas2/SistemaMoedas2/Views/Shared/Error.cshtml]
