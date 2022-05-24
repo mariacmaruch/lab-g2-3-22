@@ -9667,11 +9667,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\maria\\OneDrive\\lab\\lab-g2-3-22\\implementacao\\SistemaMoedas2\\SistemaMoedas2\\SistemaMoedas2.csproj",
+      "projectUniqueName": "C:\\Users\\maria\\OneDrive\\lab\\lab-g2-3-22\\implementacao\\lab-g2-3-22\\implementacao\\SistemaMoedas2\\SistemaMoedas2\\SistemaMoedas2.csproj",
       "projectName": "SistemaMoedas2",
-      "projectPath": "C:\\Users\\maria\\OneDrive\\lab\\lab-g2-3-22\\implementacao\\SistemaMoedas2\\SistemaMoedas2\\SistemaMoedas2.csproj",
+      "projectPath": "C:\\Users\\maria\\OneDrive\\lab\\lab-g2-3-22\\implementacao\\lab-g2-3-22\\implementacao\\SistemaMoedas2\\SistemaMoedas2\\SistemaMoedas2.csproj",
       "packagesPath": "C:\\Users\\maria\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\maria\\OneDrive\\lab\\lab-g2-3-22\\implementacao\\SistemaMoedas2\\SistemaMoedas2\\obj\\",
+      "outputPath": "C:\\Users\\maria\\OneDrive\\lab\\lab-g2-3-22\\implementacao\\lab-g2-3-22\\implementacao\\SistemaMoedas2\\SistemaMoedas2\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\maria\\AppData\\Roaming\\NuGet\\NuGet.Config",

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "X9JoL7XjatvJ0urc3tauxCm/+2KbBDV2TmYvs/ftlx2W99NyL3FLI1PWL8UZQp8j1yj9/mqJmF5yJzvZ02Qlgw==",
+  "dgSpecHash": "YcE3/jg7RZVosEkcEentEKjdst+N3uJT2e7xh4UJ4xZGlnbYbjl7glk1XaD1Nl4wLMnbsUhspdBHV/PD158VKA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\maria\\OneDrive\\lab\\lab-g2-3-22\\implementacao\\SistemaMoedas2\\SistemaMoedas2.csproj",
+  "projectFilePath": "C:\\Users\\maria\\OneDrive\\lab\\lab-g2-3-22\\implementacao\\lab-g2-3-22\\implementacao\\SistemaMoedas2\\SistemaMoedas2.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\maria\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\maria\\.nuget\\packages\\microsoft.csharp\\4.5.0\\microsoft.csharp.4.5.0.nupkg.sha512",
