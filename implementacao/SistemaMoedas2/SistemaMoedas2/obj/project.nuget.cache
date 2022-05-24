@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "2Pu1GoCzZedosyepPPB66M/YuKbdc+tYIEHKPK9oqMuegbx7yw3J0fXfFlmPRQKDJRmttYDbNR0oQcYBvraGWg==",
+  "dgSpecHash": "G79iUoZKmXcPtWMT19Z3Xb8sbqZ1ZzgJ0KNY0AKX2mUWbI91O74AfgUhCkTu1H0q0rTRTiYhWgJYtcVwmAmcgw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\maria\\OneDrive\\lab\\lab-g2-3-22\\implementacao\\SistemaMoedas2\\SistemaMoedas2\\SistemaMoedas2.csproj",
+  "projectFilePath": "C:\\Users\\maria\\OneDrive\\lab-g2-3-22\\implementacao\\SistemaMoedas2\\SistemaMoedas2\\SistemaMoedas2.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\maria\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\maria\\.nuget\\packages\\messagepack\\2.1.152\\messagepack.2.1.152.nupkg.sha512",
