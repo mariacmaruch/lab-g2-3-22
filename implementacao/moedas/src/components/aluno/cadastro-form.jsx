@@ -39,7 +39,6 @@ export default class CadastroAluno extends Component {
             cadastroAluno: currentCadastroAluno
         });
     }
-
     alunoPost = async () => {
         await axios.post(this.state.baseAlunoUrl, this.state.cadastroAluno)
             .then(response => {

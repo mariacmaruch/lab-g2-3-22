@@ -22,7 +22,7 @@ namespace SistemaMoedas2.Controllers
         {
             try
             {
-                var instituicoes = await _instituicao.GetInstituicoes();
+                var instituicoes = await _instituicao.GetAll();
                 return Ok(instituicoes);
             }
             catch (Exception)

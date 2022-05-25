@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SistemaMoedas2.Data;
 
@@ -10,9 +11,10 @@ using SistemaMoedas2.Data;
 namespace SistemaMoedas2.Migrations
 {
     [DbContext(typeof(BancoContext))]
-    partial class BancoContextModelSnapshot : ModelSnapshot
+    [Migration("20220525032530_AtualizacaoRelInstituicao")]
+    partial class AtualizacaoRelInstituicao
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -28,9 +30,6 @@ namespace SistemaMoedas2.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<int>("ContaId")
-                        .HasColumnType("int");
 
                     b.Property<string>("Cpf")
                         .IsRequired()
@@ -57,9 +56,6 @@ namespace SistemaMoedas2.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ContaId")
-                        .IsUnique();
-
                     b.HasIndex("InstituicaoId");
 
                     b.ToTable("Alunos");
@@ -73,10 +69,19 @@ namespace SistemaMoedas2.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
+                    b.Property<int>("Numero")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ParticipanteId")
+                        .HasColumnType("int");
+
                     b.Property<double>("Saldo")
                         .HasColumnType("float");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("ParticipanteId")
+                        .IsUnique();
 
                     b.ToTable("Conta");
                 });
@@ -177,9 +182,6 @@ namespace SistemaMoedas2.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<int>("ContaId")
-                        .HasColumnType("int");
-
                     b.Property<string>("Cpf")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -205,9 +207,6 @@ namespace SistemaMoedas2.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ContaId")
-                        .IsUnique();
-
                     b.HasIndex("InstituicaoId");
 
                     b.ToTable("Professores");
@@ -215,15 +214,24 @@ namespace SistemaMoedas2.Migrations
 
             modelBuilder.Entity("SistemaMoedas2.Models.Aluno", b =>
                 {
-                    b.HasOne("SistemaMoedas2.Models.Conta", null)
-                        .WithOne()
-                        .HasForeignKey("SistemaMoedas2.Models.Aluno", "ContaId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("SistemaMoedas2.Models.Instituicao", null)
                         .WithMany()
                         .HasForeignKey("InstituicaoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("SistemaMoedas2.Models.Conta", b =>
+                {
+                    b.HasOne("SistemaMoedas2.Models.Aluno", null)
+                        .WithOne()
+                        .HasForeignKey("SistemaMoedas2.Models.Conta", "ParticipanteId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("SistemaMoedas2.Models.Professor", null)
+                        .WithOne()
+                        .HasForeignKey("SistemaMoedas2.Models.Conta", "ParticipanteId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
@@ -239,12 +247,6 @@ namespace SistemaMoedas2.Migrations
 
             modelBuilder.Entity("SistemaMoedas2.Models.Professor", b =>
                 {
-                    b.HasOne("SistemaMoedas2.Models.Conta", null)
-                        .WithOne()
-                        .HasForeignKey("SistemaMoedas2.Models.Professor", "ContaId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("SistemaMoedas2.Models.Instituicao", null)
                         .WithMany()
                         .HasForeignKey("InstituicaoId")

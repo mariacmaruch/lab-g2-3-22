@@ -5,26 +5,10 @@ using SistemaMoedas2.Repositorio.Interface;
 
 namespace SistemaMoedas2.Repositorio.Implementacao
 {
-    public class InstituicaoRepositorio : IInstituicaoRepositorio
+    public class InstituicaoRepositorio : BaseRepositorio<Instituicao>, IInstituicaoRepositorio
     {
-        private readonly BancoContext _banco;
-
-        public InstituicaoRepositorio(BancoContext banco)
+        public InstituicaoRepositorio(BancoContext banco) : base(banco)
         {
-            _banco = banco;
-        }
-        public async Task<IEnumerable<Instituicao>> GetInstituicoes()
-        {
-            try
-            {
-                return await _banco.Instituicao.ToListAsync();
-            }
-            catch (Exception)
-            {
-
-                throw;
-            }
-
         }
 
     }

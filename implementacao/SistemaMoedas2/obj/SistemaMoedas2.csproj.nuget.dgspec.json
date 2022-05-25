@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\pedro\\OneDrive\\Documentos\\PUC-Notebook-PV\\4º\\Laboratório de Desenvolvimento de Software\\lab 3\\lab-g2-3-22\\implementacao\\SistemaMoedas2\\SistemaMoedas2.csproj": {}
+    "C:\\Projetos\\Lab3\\lab-g2-3-22\\implementacao\\SistemaMoedas2\\SistemaMoedas2.csproj": {}
   },
   "projects": {
-    "C:\\Users\\pedro\\OneDrive\\Documentos\\PUC-Notebook-PV\\4º\\Laboratório de Desenvolvimento de Software\\lab 3\\lab-g2-3-22\\implementacao\\SistemaMoedas2\\SistemaMoedas2.csproj": {
+    "C:\\Projetos\\Lab3\\lab-g2-3-22\\implementacao\\SistemaMoedas2\\SistemaMoedas2.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\pedro\\OneDrive\\Documentos\\PUC-Notebook-PV\\4º\\Laboratório de Desenvolvimento de Software\\lab 3\\lab-g2-3-22\\implementacao\\SistemaMoedas2\\SistemaMoedas2.csproj",
+        "projectUniqueName": "C:\\Projetos\\Lab3\\lab-g2-3-22\\implementacao\\SistemaMoedas2\\SistemaMoedas2.csproj",
         "projectName": "SistemaMoedas2",
-        "projectPath": "C:\\Users\\pedro\\OneDrive\\Documentos\\PUC-Notebook-PV\\4º\\Laboratório de Desenvolvimento de Software\\lab 3\\lab-g2-3-22\\implementacao\\SistemaMoedas2\\SistemaMoedas2.csproj",
+        "projectPath": "C:\\Projetos\\Lab3\\lab-g2-3-22\\implementacao\\SistemaMoedas2\\SistemaMoedas2.csproj",
         "packagesPath": "C:\\Users\\pedro\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\pedro\\OneDrive\\Documentos\\PUC-Notebook-PV\\4º\\Laboratório de Desenvolvimento de Software\\lab 3\\lab-g2-3-22\\implementacao\\SistemaMoedas2\\obj\\",
+        "outputPath": "C:\\Projetos\\Lab3\\lab-g2-3-22\\implementacao\\SistemaMoedas2\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\pedro\\AppData\\Roaming\\NuGet\\NuGet.Config",

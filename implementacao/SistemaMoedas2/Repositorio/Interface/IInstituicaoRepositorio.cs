@@ -2,8 +2,7 @@
 
 namespace SistemaMoedas2.Repositorio.Interface
 {
-    public interface IInstituicaoRepositorio
+    public interface IInstituicaoRepositorio : IBaseRepositorio<Instituicao>
     {
-        Task<IEnumerable<Instituicao>> GetInstituicoes();
     }
 }

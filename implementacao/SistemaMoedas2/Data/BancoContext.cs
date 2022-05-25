@@ -17,6 +17,7 @@ namespace SistemaMoedas2.Data
         public DbSet<Conta> Conta { get; set; }
         public DbSet<Instituicao> Instituicao { get; set; }
         public DbSet<Parceiro> Parceiros { get; set; }
+        public DbSet<Professor> Professores { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -30,10 +31,21 @@ namespace SistemaMoedas2.Data
                 .WithOne()
                 .HasForeignKey(p => p.InstituicaoId);
 
-            modelBuilder.Entity<Conta>()
-                .HasOne<Aluno>()
+            modelBuilder.Entity<Instituicao>()
+                .HasMany<Professor>()
                 .WithOne()
-                .HasForeignKey<Conta>(c => c.AlunoId);
+                .HasForeignKey(p => p.InstituicaoId);
+
+            modelBuilder.Entity<Aluno>()
+                .HasOne<Conta>()
+                .WithOne()
+                .HasForeignKey<Aluno>(c => c.ContaId);
+
+            modelBuilder.Entity<Professor>()
+                .HasOne<Conta>()
+                .WithOne()
+                .HasForeignKey<Professor>(c => c.ContaId);
+
         }
 
 

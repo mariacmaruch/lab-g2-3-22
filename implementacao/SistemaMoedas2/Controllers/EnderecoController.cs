@@ -25,7 +25,7 @@ namespace SistemaMoedas2.Controllers
         {
             try
             {
-                var endereco = await _enderecoRepositorio.GetEndereco(id);
+                var endereco = await _enderecoRepositorio.GetById(id);
                 return Ok(endereco);
             }
             catch (Exception)
@@ -39,7 +39,7 @@ namespace SistemaMoedas2.Controllers
         {
             try
             {
-                await _enderecoRepositorio.CreateEndereco(endereco);
+                await _enderecoRepositorio.Create(endereco);
                 return CreatedAtRoute(nameof(GetEndereco), new {id = endereco.Id }, endereco);
 
             }
@@ -56,7 +56,7 @@ namespace SistemaMoedas2.Controllers
             {
                 if(endereco.Id == id)
                 {
-                    await _enderecoRepositorio.UpdateEndereco(endereco);
+                    await _enderecoRepositorio.Update(endereco);
                     return Ok($"Endereço com id = {id} foi atualizado com sucesso");
                 }
                 else
@@ -75,10 +75,10 @@ namespace SistemaMoedas2.Controllers
         {
             try
             {
-                var endereco = await _enderecoRepositorio.GetEndereco(id);
+                var endereco = await _enderecoRepositorio.GetById(id);
                 if(endereco != null)
                 {
-                    await _enderecoRepositorio.DeleteEndereco(endereco);
+                    await _enderecoRepositorio.Delete(endereco);
                     return Ok($"Endereço de id = {id} foi excluido com sucesso");
                 }
                 else

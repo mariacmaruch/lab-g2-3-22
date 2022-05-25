@@ -19,17 +19,34 @@ namespace SistemaMoedas2.Controllers
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public async Task<ActionResult<IAsyncEnumerable<Parceiro>>> GetInstituicoes()
+        public async Task<ActionResult<IAsyncEnumerable<Parceiro>>> GetParceiros()
         {
             try
             {
-                var parceiros = await _parceiro.GetParceiros();
+                var parceiros = await _parceiro.GetAll();
                 return Ok(parceiros);
             }
             catch (Exception)
             {
                 return StatusCode(StatusCodes.Status500InternalServerError);
 
+            }
+        }
+        [HttpGet("{id:int}", Name = "GetParceiro")]
+        public async Task<ActionResult<Aluno>> GetParceiro(int id)
+        {
+            try
+            {
+                var parceiro = await _parceiro.GetById(id);
+
+                if (parceiro == null)
+                    return NotFound($"Não existe parceiro com o id = {id}");
+
+                return Ok(parceiro);
+            }
+            catch
+            {
+                return BadRequest("Requisição inválida");
             }
         }
 
@@ -41,7 +58,7 @@ namespace SistemaMoedas2.Controllers
                 var parceiro = await _parceiro.GetParceiroByEmailAndSenha(email, senha);
 
                 if (parceiro == null)
-                    return NotFound($"Usário ou senha inválidos");
+                    return NotFound($"Usuário ou senha inválidos");
 
                 return Ok(parceiro);
             }
@@ -52,57 +69,63 @@ namespace SistemaMoedas2.Controllers
             }
 
         }
-
-        public IActionResult Criar()
-        {
-            return View();
-        }
-
-        /// <summary>
-        /// Id do aluno para editar
-        /// </summary>
-        /// <param name="id">id aluno</param>
-        /// <returns></returns>
-        public IActionResult Editar(int id)
-        {
-            var parceiro = _parceiro.ObterPorId(id);
-            return View(parceiro);
-        }
-
-        // POST: Aluno/Create
-        /// <summary>
-        /// Cadastrar um aluno
-        /// </summary>
-        /// <param name="aluno">Model de aluno</param>
-        /// <returns></returns>
         [HttpPost]
-        public IActionResult Criar(Parceiro parceiro)
+        public async Task<ActionResult> Create(Parceiro parceiro)
         {
-            _parceiro.Adicionar(parceiro);
-            return RedirectToAction("Index");
-        }
+            try
+            {
+                await _parceiro.Create(parceiro);
+                return CreatedAtRoute(nameof(GetParceiro), new { id = parceiro.Id }, parceiro);
+            }
+            catch
+            {
 
-        /// <summary>
-        /// Editar um aluno
-        /// </summary>
-        /// <param name="parceiro">Model de aluno</param>
-        /// <returns></returns>
-        [HttpPost]
-        public IActionResult Editar(Parceiro parceiro)
-        {
-            _parceiro.Atualizar(parceiro);
-            return RedirectToAction("Index");
+                return BadRequest("Requisição inválida"); ;
+            }
+            
         }
-
-        /// <summary>
-        /// Deletar um aluno
-        /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
-        public IActionResult Apagar(int id)
+        [HttpPut("{id:int}")]
+        public async Task<ActionResult> Edit(int id, [FromBody] Parceiro parceiro)
         {
-            _parceiro.Deletar(id);
-            return RedirectToAction("Index");
+            try
+            {
+                if (parceiro.Id == id)
+                {
+                    await _parceiro.Update(parceiro);
+                    return Ok($"Parceiro com id = {id} foi atualizado com sucesso");
+                }
+                else
+                {
+                    return BadRequest("Dados inconsistentes");
+                }
+
+            }
+            catch
+            {
+                return BadRequest("Requisição inválida");
+            }
+        }
+        [HttpDelete("{id:int}")]
+        public async Task<ActionResult> Delete(int id)
+        {
+            try
+            {
+                var parceiro = await _parceiro.GetById(id);
+                if (parceiro != null)
+                {
+                    await _parceiro.Delete(parceiro);
+                    return Ok($"Parceiro de id = {id} foi excluido com sucesso");
+                }
+                else
+                {
+                    return BadRequest($"Parceiro de id = {id} não encontrado");
+                }
+
+            }
+            catch
+            {
+                return BadRequest("Requisição inválida");
+            }
         }
     }
 }

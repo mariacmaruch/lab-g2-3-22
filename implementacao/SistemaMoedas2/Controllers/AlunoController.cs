@@ -13,11 +13,14 @@ namespace SistemaMoedas2.Controllers
     {
         private readonly IAlunoRepositorio _aluno;
         private readonly IEnderecoRepositorio _endereco;
+        private readonly IContaRepositorio _conta;
 
-        public AlunoController(IAlunoRepositorio aluno, IEnderecoRepositorio endereco)
+
+        public AlunoController(IAlunoRepositorio aluno, IEnderecoRepositorio endereco, IContaRepositorio conta)
         {
             _aluno = aluno;
             _endereco = endereco;
+            _conta = conta;
         }
 
         [HttpGet]
@@ -27,7 +30,7 @@ namespace SistemaMoedas2.Controllers
         {
             try
             {
-                var alunos = await _aluno.GetAlunos();
+                var alunos = await _aluno.GetAll();
                 return Ok(alunos);
             }
             catch (Exception)
@@ -61,7 +64,7 @@ namespace SistemaMoedas2.Controllers
         {
             try
             {
-                var aluno = await _aluno.GetAluno(id);
+                var aluno = await _aluno.GetById(id);
 
                 if (aluno == null)
                     return NotFound($"Não existe aluno com o id = {id}");
@@ -77,6 +80,11 @@ namespace SistemaMoedas2.Controllers
         [HttpPost]
         public async Task<ActionResult> Create(CadastroAluno aluno)
         {
+            Conta conta = new Conta()
+            {
+                Saldo = 0
+            };
+
             Aluno novoAluno = new Aluno()
             {
                 Cpf = aluno.Cpf,
@@ -97,10 +105,15 @@ namespace SistemaMoedas2.Controllers
                 Estado = aluno.Estado
             };
             try
-            {
-                await _aluno.CreateAluno(novoAluno);
-                novoEndereco.AlunoId = await _aluno.GetAlunoIdByCpf(novoAluno.Cpf);
-                await _endereco.CreateEndereco(novoEndereco);
+            {   
+                await _conta.Create(conta);
+
+                novoAluno.ContaId = conta.Id;
+                await _aluno.Create(novoAluno);
+
+                novoEndereco.AlunoId = novoAluno.Id;
+                await _endereco.Create(novoEndereco);
+
                 return CreatedAtRoute(nameof(GetAluno), new {id = novoAluno.Id }, novoAluno);
 
             }
@@ -117,7 +130,7 @@ namespace SistemaMoedas2.Controllers
             {
                 if(aluno.Id == id)
                 {
-                    await _aluno.UpdateAluno(aluno);
+                    await _aluno.Update(aluno);
                     return Ok($"Aluno com id = {id} foi atualizado com sucesso");
                 }
                 else
@@ -136,10 +149,10 @@ namespace SistemaMoedas2.Controllers
         {
             try
             {
-                var aluno = await _aluno.GetAluno(id);
+                var aluno = await _aluno.GetById(id);
                 if(aluno != null)
                 {
-                    await _aluno.DeleteAluno(aluno);
+                    await _aluno.Delete(aluno);
                     return Ok($"Aluno de id = {id} foi excluido com sucesso");
                 }
                 else
