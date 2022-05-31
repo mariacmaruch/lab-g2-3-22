@@ -1,5 +1,6 @@
 import axios from "axios";
 import { Component } from "react";
+import { Link } from "react-router-dom";
 import { Form, FormGroup, Input, Label, Button } from "reactstrap";
 
 export default class CadastroAluno extends Component {
@@ -42,7 +43,6 @@ export default class CadastroAluno extends Component {
     alunoPost = async () => {
         await axios.post(this.state.baseAlunoUrl, this.state.cadastroAluno)
             .then(response => {
-                console.log(response.data.id)
             }).catch(error => {
                 console.log(error);
             })
@@ -50,6 +50,7 @@ export default class CadastroAluno extends Component {
     componentDidMount() {
         this.populateInstituicao();
     }
+
 
     render() {
         if (!this.state.loading) {
@@ -79,7 +80,7 @@ export default class CadastroAluno extends Component {
                         <FormGroup><legend>Insituição</legend></FormGroup>
                         <select className="form-select" name="instituicaoId" onChange={this.handleCadastroAlunoChange}>
                             {this.state.instituicoes.map(instituicao => 
-                                <option value={instituicao.id}>{instituicao.nome}</option>
+                                <option key={instituicao.is} value={instituicao.id}>{instituicao.nome}</option>
                             )}
                         </select>
                     </FormGroup>
@@ -108,7 +109,7 @@ export default class CadastroAluno extends Component {
                         <Label for="inputEstado">Estado</Label>
                         <Input type="text" id="inputEstado" name="estado" onChange={this.handleCadastroAlunoChange} value={this.state.cadastroAluno.estado}></Input>
                     </FormGroup>
-                    <Button onClick={this.alunoPost}>Enviar</Button>
+                    <Link to={"/"}><Button onClick={this.alunoPost}>Enviar</Button></Link>
                 </Form >
             )
         }

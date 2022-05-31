@@ -5,6 +5,7 @@ import Home from './components/Home.jsx';
 import './custom.css'
 import Aluno from './views/aluno.jsx';
 import CadastroAluno from './components/aluno/cadastro-form.jsx';
+import Login from './components/aluno/login.jsx';
 
 export default class App extends Component {
   static displayName = App.name;
@@ -16,6 +17,7 @@ export default class App extends Component {
           <Route path='/' element={<Home /> } />
           <Route path='/Aluno' element={<Aluno />} />
           <Route path='/api/Aluno' element={<CadastroAluno />} />
+          <Route path='/api/Aluno/login' element={<Login />} />
         </Routes>
       </Layout>
     );
